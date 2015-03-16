@@ -9,7 +9,7 @@ namespace Dataway.MvcLibrary.Helpers
 	{
 		#region String Extensions
 
-		public static string LimitToCharacterCount(this string stringObj, int characterLimit)
+		public static string Truncate(this string stringObj, int characterLimit)
 		{
 			if (stringObj == null || stringObj.Length <= characterLimit)
 			{

@@ -26,6 +26,21 @@ namespace Dataway.MvcLibrary.Helpers
             return collection.AllKeys.Contains(key);
         }
 
+        public static bool HasValue(this NameValueCollection collection, string key)
+        {
+            return !string.IsNullOrWhiteSpace(collection[key]);
+        }
+
+        public static List<T> Values<T>(this NameValueCollection collection, string key)
+        {
+            if (HasValue(collection, key))
+            {
+                var bits = collection.Value<string>(key).Split(',');
+                return bits.Select(b => GetValueOrDefault<T>(b)).ToList();
+            }
+            return new List<T>();
+        }
+
         public static T Value<T>(this HttpSessionState session, string key)
         {
             return GetValueOrDefault<T>(session[key]);
